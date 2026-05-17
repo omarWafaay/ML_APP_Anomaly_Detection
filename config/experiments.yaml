@@ -1,0 +1,296 @@
+{
+  "experiments": [
+    {
+      "name": "reconstruction_ae",
+      "type": "reconstruction_ae",
+      "enabled": true,
+      "tags": ["baseline", "ae"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Classical reconstruction autoencoder baseline from AE_compare notebook.",
+      "overrides": {}
+    },
+    {
+      "name": "forecasting_ae",
+      "type": "forecasting_ae",
+      "enabled": true,
+      "tags": ["baseline", "ae", "forecasting"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Predict-next objective from the AE_compare notebook.",
+      "overrides": {}
+    },
+    {
+      "name": "reconstruction_aae",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "adversarial"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Base adversarial reconstruction autoencoder. Disabled until explicitly requested.",
+      "overrides": {}
+    },
+    {
+      "name": "aae_v2_lam001_d1e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.001,
+          "discriminator_learning_rate": 0.0001,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam003_d1e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.003,
+          "discriminator_learning_rate": 0.0001,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam001_d2e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.001,
+          "discriminator_learning_rate": 0.0002,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam003_d2e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.003,
+          "discriminator_learning_rate": 0.0002,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam001_d4e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.001,
+          "discriminator_learning_rate": 0.0004,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam003_d4e4_linear",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.003,
+          "discriminator_learning_rate": 0.0004,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam001_d2e4_hinge",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 hinge-loss sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.001,
+          "discriminator_learning_rate": 0.0002,
+          "generator_loss": "hinge"
+        }
+      }
+    },
+    {
+      "name": "aae_v2_lam003_d2e4_hinge",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["aae", "sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "AAE v2 hinge-loss sweep candidate from the notebook.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.003,
+          "discriminator_learning_rate": 0.0002,
+          "generator_loss": "hinge"
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_ae_repeats5",
+      "type": "forecasting_ae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "ae", "repeat_seed"],
+      "seed": 42,
+      "repeats": 5,
+      "notes": "Repeated-seed Forecasting AE baseline. Use this to estimate variance before trusting single-run notebook conclusions.",
+      "overrides": {}
+    },
+    {
+      "name": "recommended_reconstruction_aae_repeats5",
+      "type": "reconstruction_aae",
+      "enabled": false,
+      "tags": ["recommended", "reconstruction", "aae", "repeat_seed"],
+      "seed": 42,
+      "repeats": 5,
+      "notes": "Repeated-seed Reconstruction AAE reference. Keep as a comparison point, not the main direction.",
+      "overrides": {}
+    },
+    {
+      "name": "recommended_forecasting_aae_repeats5",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "repeat_seed"],
+      "seed": 42,
+      "repeats": 5,
+      "notes": "Repeated-seed Forecasting AAE. This is the highest-priority notebook direction because it had the best threshold-free metrics.",
+      "overrides": {}
+    },
+    {
+      "name": "recommended_forecasting_aae_lam0003_d1e4_linear",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "adversarial_sweep"],
+      "seed": 42,
+      "repeats": 3,
+      "notes": "Forecasting AAE with weaker adversarial pressure. Tests whether a smaller lambda stabilizes training.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.0003,
+          "discriminator_learning_rate": 0.0001,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_aae_lam001_d1e4_linear",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "adversarial_sweep"],
+      "seed": 42,
+      "repeats": 3,
+      "notes": "Forecasting AAE with lambda_adv=0.001 and conservative discriminator learning rate.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.001,
+          "discriminator_learning_rate": 0.0001,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_aae_lam003_d1e4_linear",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "adversarial_sweep"],
+      "seed": 42,
+      "repeats": 3,
+      "notes": "Forecasting AAE with the notebook's promising lambda_adv=0.003 and conservative discriminator learning rate.",
+      "overrides": {
+        "adversarial": {
+          "lambda_adv": 0.003,
+          "discriminator_learning_rate": 0.0001,
+          "generator_loss": "linear"
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_ae_window064",
+      "type": "forecasting_ae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "ae", "window_sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Shorter-window Forecasting AE. Checks whether anomalies are visible with less temporal context.",
+      "overrides": {
+        "data": {
+          "window_length": 64
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_ae_window256",
+      "type": "forecasting_ae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "ae", "window_sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Longer-window Forecasting AE. Checks whether more temporal context improves anomaly ranking.",
+      "overrides": {
+        "data": {
+          "window_length": 256
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_aae_window064",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "window_sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Shorter-window Forecasting AAE. Compare against the AE window sweep to isolate the adversarial effect.",
+      "overrides": {
+        "data": {
+          "window_length": 64
+        }
+      }
+    },
+    {
+      "name": "recommended_forecasting_aae_window256",
+      "type": "forecasting_aae",
+      "enabled": false,
+      "tags": ["recommended", "forecasting", "aae", "window_sweep"],
+      "seed": 42,
+      "repeats": 1,
+      "notes": "Longer-window Forecasting AAE. Compare against the AE window sweep to isolate the adversarial effect.",
+      "overrides": {
+        "data": {
+          "window_length": 256
+        }
+      }
+    }
+  ]
+}
