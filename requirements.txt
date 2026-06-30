@@ -1,5 +1,0 @@
-numpy
-scikit-learn
-matplotlib
-pytest
-PyYAML
