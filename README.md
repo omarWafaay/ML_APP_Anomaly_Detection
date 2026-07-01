@@ -20,20 +20,21 @@ We evaluate four main model families:
 
 The semi-supervised notebook also studies threshold selection using a small labeled anomaly validation split.
 
-The strongest final result in the semi-supervised notebook is:
+The final semi-supervised summary is:
 
 | Model | ROC-AUC | PR-AUC | F1 at mu+2sigma | F1 at selected percentile |
 |---|---:|---:|---:|---:|
 | Reconstruction AE | 0.891 | 0.900 | 0.621 | 0.615 |
 | Reconstruction AAE | 0.941 | 0.948 | 0.921 | 0.917 |
-| Forecasting AE | 0.954 | 0.940 | 0.871 | 0.793 |
-| Forecasting AAE | 0.975 | 0.943 | 0.105 | 0.688 |
+| Forecasting AE | 0.964 | 0.960 | 0.915 | 0.805 |
+| Forecasting AAE | 0.975 | 0.953 | 0.320 | 0.908 |
 
 Main conclusions:
 
 - In the semi-supervised run, AAE improves the reconstruction objective compared with the plain Reconstruction AE.
-- Forecasting AE has the best ROC-AUC among the final reported models.
-- AAE has the best PR-AUC among the final reported models.
+- Forecasting AAE has the best ROC-AUC among the final reported models.
+- Forecasting AE has the best PR-AUC among the final reported models.
+- AAE has the best `mu+2sigma` F1 among the final reported models.
 - Forecasting AAE has very strong ROC-AUC/PR-AUC, but its `mu+2sigma` threshold is too conservative. Percentile threshold tuning helps Forecasting AAE a lot.
 - AAE v2 was investigated, but it did not beat AAE v1, so it is documented in the notebook but excluded from the final report chart.
 
@@ -47,17 +48,29 @@ Main conclusions:
 |-- .gitignore
 |-- outputs/
 |   `-- ae_compare/
-|       |-- compare_final.json
-|       |-- compare_3way.json
-|       |-- compare_aae_v2_sweep.json
-|       |-- compare_forecast_aae.json
-|       |-- threshold_sensitivity.json
-|       |-- forecast_threshold_sensitivity.json
-|       |-- recon_ae.pt
-|       |-- forecast_ae.pt
-|       |-- aae.pt
-|       |-- forecast_aae.pt
-|       `-- aae_v2_*.pt
+|       |-- unsupervised/
+|       |   |-- compare_final.json
+|       |   |-- compare_3way.json
+|       |   |-- compare_aae_v2_sweep.json
+|       |   |-- compare_forecast_aae.json
+|       |   |-- forecast_threshold_sensitivity.json
+|       |   |-- recon_ae.pt
+|       |   |-- forecast_ae.pt
+|       |   |-- aae.pt
+|       |   |-- forecast_aae.pt
+|       |   `-- aae_v2_*.pt
+|       `-- semi_supervised/
+|           |-- compare_final.json
+|           |-- compare_3way.json
+|           |-- compare_aae_v2_sweep.json
+|           |-- compare_forecast_aae.json
+|           |-- threshold_sensitivity.json
+|           |-- forecast_threshold_sensitivity.json
+|           |-- recon_ae.pt
+|           |-- forecast_ae.pt
+|           |-- aae.pt
+|           |-- forecast_aae.pt
+|           `-- aae_v2_*.pt
 |-- KukaNormal.npy      # local dataset, ignored by git
 `-- KukaSlow.npy        # local dataset, ignored by git
 ```
@@ -139,7 +152,7 @@ test  = (273, 85, 128)
 slow  = (324, 85, 128)
 ```
 
-The slow/anomaly data is not used for threshold selection in the original unsupervised setup except where the notebook later reports fixed validation percentile operating points such as `p90`.
+The slow/anomaly data is not used to choose thresholds in the original unsupervised setup. The later `p90` operating point is a fixed percentile of normal validation scores, not an anomaly-tuned threshold.
 
 ### Semi-Supervised Notebook
 
@@ -386,8 +399,8 @@ The final summary table from the notebook is:
 |---|---|---:|---:|---:|---:|
 | Reconstruction | AE | 0.466 | 0.689 | 0.368 | 0.466 |
 | Reconstruction | AAE | 0.507 | 0.717 | 0.599 | 0.603 |
-| Forecasting | Forecasting AE | 0.662 | 0.786 | 0.610 | 0.620 |
-| Forecasting | Forecasting AAE | 0.685 | 0.794 | 0.094 | 0.503 |
+| Forecasting | Forecasting AE | 0.670 | 0.791 | 0.614 | 0.620 |
+| Forecasting | Forecasting AAE | 0.686 | 0.799 | 0.060 | 0.425 |
 
 Interpretation:
 
@@ -426,21 +439,22 @@ Forecasting AAE
 |---|---|---:|---:|---:|---:|---|
 | Reconstruction | AE | 0.891 | 0.900 | 0.621 | 0.615 | p99 |
 | Reconstruction | AAE | 0.941 | 0.948 | 0.921 | 0.917 | p99 |
-| Forecasting | Forecasting AE | 0.954 | 0.940 | 0.871 | 0.793 | p80 |
-| Forecasting | Forecasting AAE | 0.975 | 0.943 | 0.105 | 0.688 | p85 |
+| Forecasting | Forecasting AE | 0.964 | 0.960 | 0.915 | 0.805 | p80 |
+| Forecasting | Forecasting AAE | 0.975 | 0.953 | 0.320 | 0.908 | p80 |
 
 Interpretation:
 
 - AAE is much better than Reconstruction AE for reconstruction scoring.
-- Forecasting AE has the best ROC-AUC among the final report models.
-- AAE has the best PR-AUC among the final report models.
+- Forecasting AAE has the best ROC-AUC among the final report models.
+- Forecasting AE has the best PR-AUC among the final report models.
+- AAE has the best `mu+2sigma` F1 among the final report models.
 - Percentile threshold tuning did not help AE, AAE, or Forecasting AE relative to their own `mu+2sigma` F1.
 - Percentile threshold tuning helped Forecasting AAE a lot:
 
 ```text
 Forecasting AAE F1:
-  mu+2sigma = 0.105
-  selected percentile = 0.688
+  mu+2sigma = 0.320
+  selected percentile = 0.908
 ```
 
 This does not mean Forecasting AAE is the best F1 model overall. It means percentile tuning helps Forecasting AAE relative to its own overly strict `mu+2sigma` threshold.
@@ -540,12 +554,15 @@ Recommended order:
 
 If the kernel has been reset, do not skip training cells because the later cells depend on variables created earlier.
 
+The notebooks write to separate output folders, so running one notebook will not overwrite the other's JSON/checkpoint files.
+
 ### 4. Output Files
 
-The notebooks save model checkpoints and comparison JSON files under:
+The notebooks save model checkpoints and comparison JSON files under separate subfolders:
 
 ```text
-outputs/ae_compare/
+AE_compare_unsupervised.ipynb      -> outputs/ae_compare/unsupervised/
+AE_compare_semi_supervised.ipynb   -> outputs/ae_compare/semi_supervised/
 ```
 
 Important JSON outputs:
@@ -556,8 +573,8 @@ Important JSON outputs:
 | `compare_3way.json` | AE vs Forecasting AE vs AAE |
 | `compare_aae_v2_sweep.json` | AAE v2 sweep results |
 | `compare_forecast_aae.json` | Forecasting AE vs Forecasting AAE |
-| `threshold_sensitivity.json` | Unified semi-supervised percentile threshold results |
-| `forecast_threshold_sensitivity.json` | Compatibility copy of threshold sensitivity results |
+| `threshold_sensitivity.json` | Unified semi-supervised percentile threshold results, semi-supervised notebook only |
+| `forecast_threshold_sensitivity.json` | Forecasting threshold sensitivity / compatibility copy |
 
 Important checkpoint outputs:
 
@@ -594,7 +611,7 @@ You can use the following wording in documentation or a report:
 
 > We compare reconstruction-based and forecasting-based autoencoder models for Kuka anomaly detection. All models are trained on normal windows only. In the semi-supervised version, a small labeled anomaly validation split is used only for threshold selection, while a separate slow-test split remains untouched for final evaluation.
 
-> The adversarial reconstruction model improves over the plain reconstruction autoencoder, reaching stronger ROC-AUC, PR-AUC, and F1. Forecasting AE gives the strongest ROC-AUC among the final reported models, while AAE gives the strongest PR-AUC. Forecasting AAE ranks anomalies well but requires threshold tuning because the normal-only `mu+2sigma` threshold is too conservative.
+> The adversarial reconstruction model improves over the plain reconstruction autoencoder, reaching stronger ROC-AUC, PR-AUC, and F1. Forecasting AAE gives the strongest ROC-AUC among the final reported models, while Forecasting AE gives the strongest PR-AUC. Forecasting AAE ranks anomalies well but benefits from threshold tuning because the normal-only `mu+2sigma` threshold is too conservative.
 
 > AAE v2 hyperparameter tuning did not improve over the original AAE, so AAE v2 is documented as an ablation but excluded from the final summary chart.
 
@@ -623,4 +640,3 @@ mu+2sigma is a normal-only threshold.
 The semi-supervised percentile method uses slow_val only to choose the threshold.
 The final test always stays separate.
 ```
-

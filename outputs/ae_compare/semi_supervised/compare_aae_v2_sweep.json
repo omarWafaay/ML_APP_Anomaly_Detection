@@ -21,7 +21,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.025296797300433063,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam001_d1e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam001_d1e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.0029846696513363153,
@@ -147,7 +147,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.030862353373687347,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam003_d1e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam003_d1e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.019536019536019533,
@@ -273,7 +273,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.028661593958571718,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam001_d2e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam001_d2e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.0012662234884457109,
@@ -399,7 +399,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.028246412579065714,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam003_d2e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam003_d2e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.008320897209786095,
@@ -525,7 +525,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.028026543912433442,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam001_d4e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam001_d4e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.013363180029846695,
@@ -651,7 +651,7 @@
         "g_loss": "linear"
       },
       "best_val_mse": 0.030073731932993772,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam003_d4e4_linear.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam003_d4e4_linear.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.004409171075837741,
@@ -777,7 +777,7 @@
         "g_loss": "hinge"
       },
       "best_val_mse": 0.028661593958571718,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam001_d2e4_hinge.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam001_d2e4_hinge.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.0012662234884457109,
@@ -903,7 +903,7 @@
         "g_loss": "hinge"
       },
       "best_val_mse": 0.036587176141721425,
-      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\aae_v2_lam003_d2e4_hinge.pt",
+      "checkpoint": "c:\\Users\\siava\\Desktop\\4th_Semester\\ML-App\\project-AM01\\github_version\\ML_APP_Anomaly_Detection\\outputs\\ae_compare\\semi_supervised\\aae_v2_lam003_d2e4_hinge.pt",
       "selection_metrics": {
         "criterion": "validation PR-AUC, ROC-AUC tie-breaker on val_normal + slow_val",
         "val_roc_auc": 0.016845294623072396,
