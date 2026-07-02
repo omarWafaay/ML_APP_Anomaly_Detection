@@ -106,6 +106,8 @@ The time series is converted into sliding windows:
 ```text
 WINDOW_LEN = 128
 FORECAST_HALF = 64
+STRIDE_TRAIN = 32    # overlapping training windows
+STRIDE_EVAL = 128    # non-overlapping validation/test/slow windows
 ```
 
 Each window has shape:
@@ -125,7 +127,9 @@ target = next 64 timesteps
 
 Both notebooks fit preprocessing only on normal training data. This is important because fitting scalers on anomaly/test data would leak future information.
 
-The normal data is split into:
+Features are scaled to `[-1, 1]` with per-feature min-max statistics fitted on the normal training split only. The same transform is applied to validation, test, and slow data, with values clipped to the target range.
+
+The normal sequence is split chronologically into 70% training, 15% validation, and 15% test. The normal data is then organized as:
 
 ```text
 train_normal
@@ -724,7 +728,7 @@ High error means likely anomaly.
 ROC-AUC and PR-AUC measure ranking quality.
 F1 needs a threshold.
 mu+2sigma is a normal-only threshold.
-The semi-supervised percentile method uses slow_val only to choose the threshold.
+Percentile threshold values come from val_normal only; which percentile is selected uses val_normal + slow_val, then the rule is frozen for test_normal + slow_test.
 Point adjustment is post-processing of frozen threshold predictions.
 The final test always stays separate.
 ```
