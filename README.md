@@ -1,4 +1,4 @@
-# Kuka Anomaly Detection - AE, AAE, Forecasting AE, and Semi-Supervised Thresholding
+# Kuka Anomaly Detection - AE, AAE, Forecasting AE, Semi-Supervised Thresholding, and Point Adjustment
 
 This repository contains two related anomaly-detection notebooks for the Kuka dataset:
 
@@ -18,7 +18,7 @@ We evaluate four main model families:
 | Reconstruction AAE | Reconstruction AE plus an adversarial discriminator | Reconstruction MSE |
 | Forecasting AAE | Forecasting AE plus an adversarial discriminator | Forecast MSE |
 
-The semi-supervised notebook also studies threshold selection using a small labeled anomaly validation split.
+The semi-supervised notebook also studies threshold selection using a small labeled anomaly validation split. Both notebooks now include a final point-adjusted F1 section as an additional event-level view of the frozen threshold predictions.
 
 The final semi-supervised summary is:
 
@@ -26,16 +26,16 @@ The final semi-supervised summary is:
 |---|---:|---:|---:|---:|
 | Reconstruction AE | 0.891 | 0.900 | 0.621 | 0.615 |
 | Reconstruction AAE | 0.941 | 0.948 | 0.921 | 0.917 |
-| Forecasting AE | 0.964 | 0.960 | 0.915 | 0.805 |
-| Forecasting AAE | 0.975 | 0.953 | 0.320 | 0.908 |
+| Forecasting AE | 0.962 | 0.955 | 0.915 | 0.807 |
+| Forecasting AAE | 0.968 | 0.960 | 0.806 | 0.914 |
 
 Main conclusions:
 
 - In the semi-supervised run, AAE improves the reconstruction objective compared with the plain Reconstruction AE.
 - Forecasting AAE has the best ROC-AUC among the final reported models.
-- Forecasting AE has the best PR-AUC among the final reported models.
+- Forecasting AAE has the best PR-AUC among the final reported models.
 - AAE has the best `mu+2sigma` F1 among the final reported models.
-- Forecasting AAE has very strong ROC-AUC/PR-AUC, but its `mu+2sigma` threshold is too conservative. Percentile threshold tuning helps Forecasting AAE a lot.
+- Forecasting AAE has very strong ROC-AUC/PR-AUC. Percentile threshold tuning improves its F1 from 0.806 to 0.914.
 - AAE v2 was investigated, but it did not beat AAE v1, so it is documented in the notebook but excluded from the final report chart.
 
 ## Repository Layout
@@ -54,6 +54,7 @@ Main conclusions:
 |       |   |-- compare_aae_v2_sweep.json
 |       |   |-- compare_forecast_aae.json
 |       |   |-- forecast_threshold_sensitivity.json
+|       |   |-- point_adjustment_f1_summary.json
 |       |   |-- recon_ae.pt
 |       |   |-- forecast_ae.pt
 |       |   |-- aae.pt
@@ -66,6 +67,7 @@ Main conclusions:
 |           |-- compare_forecast_aae.json
 |           |-- threshold_sensitivity.json
 |           |-- forecast_threshold_sensitivity.json
+|           |-- point_adjustment_f1_summary_semi_supervised.json
 |           |-- recon_ae.pt
 |           |-- forecast_ae.pt
 |           |-- aae.pt
@@ -290,6 +292,34 @@ The notebooks report:
 
 ROC-AUC and PR-AUC do not depend on one fixed threshold. F1 does.
 
+### Point-Adjusted F1
+
+The final section of each notebook also reports point-adjusted F1. This is not a new model and not a new threshold search. It is post-processing of already frozen threshold predictions.
+
+The notebooks use window-level labels, so one "point" means one scored window. The point-adjusted section reports:
+
+| Metric variant | Meaning |
+|---|---|
+| Raw F1 | Normal window-level F1 before point adjustment |
+| Classic PA-F1 | If an anomaly event has at least one detected window, fill the whole event as detected |
+| K%-PA-F1 | Fill the whole event only if at least K% of that event was already detected |
+
+The K values used are:
+
+```text
+K = 25%, 50%, 75%
+```
+
+False positives outside true anomaly events are kept. This is important because point adjustment should not erase false alarms on normal windows.
+
+Because the current final test labels are built as:
+
+```text
+test_normal followed by slow/anomaly windows
+```
+
+the anomaly portion becomes one long continuous event. Classic point adjustment can therefore look very optimistic: one correct detection inside the slow block can turn the whole slow block into true positives. For this reason, the README and final conclusions still treat ROC-AUC, PR-AUC, and raw/window-level F1 as the headline metrics. Point-adjusted F1 is useful as an extra event-level presentation view, not as the main score.
+
 ## Threshold Logic
 
 This is the part that caused the most confusion, so it is important to keep it clear.
@@ -390,6 +420,7 @@ This notebook is the original unsupervised comparison.
 | 9. AAE v2 sweep | Try adversarial hyperparameters |
 | 10. Forecasting AAE | Train/evaluate adversarial forecasting objective |
 | 11. Final summary | Final table and comparison plot |
+| 12. Point-adjusted F1 | Event-level post-processing of frozen threshold predictions |
 
 ### Final Unsupervised Results
 
@@ -399,15 +430,15 @@ The final summary table from the notebook is:
 |---|---|---:|---:|---:|---:|
 | Reconstruction | AE | 0.466 | 0.689 | 0.368 | 0.466 |
 | Reconstruction | AAE | 0.507 | 0.717 | 0.599 | 0.603 |
-| Forecasting | Forecasting AE | 0.670 | 0.791 | 0.614 | 0.620 |
-| Forecasting | Forecasting AAE | 0.686 | 0.799 | 0.060 | 0.425 |
+| Forecasting | Forecasting AE | 0.651 | 0.779 | 0.606 | 0.611 |
+| Forecasting | Forecasting AAE | 0.745 | 0.822 | 0.298 | 0.532 |
 
 Interpretation:
 
 - Forecasting models ranked anomalies better than reconstruction models in the original unsupervised experiment.
 - AAE improved the reconstruction objective compared with plain Reconstruction AE.
-- Forecasting AAE improved ROC-AUC and PR-AUC slightly compared with Forecasting AE, but its `mu+2sigma` F1 was poor because the threshold was too conservative.
-- The p90 operating point improved Forecasting AAE's F1 substantially compared with `mu+2sigma`.
+- Forecasting AAE improved ROC-AUC and PR-AUC compared with Forecasting AE, but its `mu+2sigma` F1 was weaker because the threshold was too conservative.
+- The p90 operating point improved Forecasting AAE's F1 from 0.298 to 0.532.
 
 ## Notebook 2: `AE_compare_semi_supervised.ipynb`
 
@@ -439,25 +470,25 @@ Forecasting AAE
 |---|---|---:|---:|---:|---:|---|
 | Reconstruction | AE | 0.891 | 0.900 | 0.621 | 0.615 | p99 |
 | Reconstruction | AAE | 0.941 | 0.948 | 0.921 | 0.917 | p99 |
-| Forecasting | Forecasting AE | 0.964 | 0.960 | 0.915 | 0.805 | p80 |
-| Forecasting | Forecasting AAE | 0.975 | 0.953 | 0.320 | 0.908 | p80 |
+| Forecasting | Forecasting AE | 0.962 | 0.955 | 0.915 | 0.807 | p80 |
+| Forecasting | Forecasting AAE | 0.968 | 0.960 | 0.806 | 0.914 | p80 |
 
 Interpretation:
 
 - AAE is much better than Reconstruction AE for reconstruction scoring.
 - Forecasting AAE has the best ROC-AUC among the final report models.
-- Forecasting AE has the best PR-AUC among the final report models.
+- Forecasting AAE has the best PR-AUC among the final report models.
 - AAE has the best `mu+2sigma` F1 among the final report models.
 - Percentile threshold tuning did not help AE, AAE, or Forecasting AE relative to their own `mu+2sigma` F1.
-- Percentile threshold tuning helped Forecasting AAE a lot:
+- Percentile threshold tuning helped Forecasting AAE:
 
 ```text
 Forecasting AAE F1:
-  mu+2sigma = 0.320
-  selected percentile = 0.908
+  mu+2sigma = 0.806
+  selected percentile = 0.914
 ```
 
-This does not mean Forecasting AAE is the best F1 model overall. It means percentile tuning helps Forecasting AAE relative to its own overly strict `mu+2sigma` threshold.
+This means Forecasting AAE ranks anomalies very well and benefits from the selected p80 operating point, although AAE still has the strongest `mu+2sigma` F1.
 
 ## AAE v2 Sweep
 
@@ -496,6 +527,57 @@ Delta vs AAE v1:
 ```
 
 For this reason AAE v2 is kept in the notebook as an experiment but is not included in the final report chart.
+
+## Point Adjustment Section
+
+Both notebooks now include a final point-adjustment section after the main comparison. This section takes the frozen predictions from the already chosen thresholds and asks:
+
+```text
+If the model catches part of an anomaly event, how much of the event should count as detected?
+```
+
+The saved files are:
+
+| Notebook | Output file |
+|---|---|
+| Unsupervised | `outputs/ae_compare/unsupervised/point_adjustment_f1_summary.json` |
+| Semi-supervised | `outputs/ae_compare/semi_supervised/point_adjustment_f1_summary_semi_supervised.json` |
+
+The unsupervised PA table reports each final model at:
+
+```text
+mu+2sigma
+p90
+```
+
+The semi-supervised PA table reports each model at:
+
+```text
+mu+2sigma
+model-specific selected percentile
+```
+
+For the semi-supervised run, the selected percentile is `p99` for reconstruction AE/AAE/AAE v2 and `p80` for the forecasting models. The semi-supervised PA table also includes AAE v2 as an ablation row; the final report chart still excludes AAE v2 because AAE v2 did not beat AAE v1.
+
+### How To Present Point Adjustment
+
+Use point adjustment as an extra slide or appendix, not as the main result table.
+
+Good wording:
+
+```text
+We also report point-adjusted F1 as an event-level post-processing view. The main comparison still uses raw/window-level F1, ROC-AUC, and PR-AUC.
+```
+
+Avoid wording like:
+
+```text
+Point-adjusted F1 proves the model is perfect.
+```
+
+That would be misleading because the current slow/anomaly test block is one continuous event. Classic PA-F1 can jump close to 1.0 when the model detects only part of that block. The stricter K%-PA rows are more informative because they require at least 25%, 50%, or 75% event coverage before filling the event.
+
+When reading the JSON directly, note that the unsupervised file names the K columns `PA_K25`, `PA_K50`, and `PA_K75`, while the semi-supervised file names them `PA%K25`, `PA%K50`, and `PA%K75`. They mean the same K-percent point-adjustment rule.
 
 ## Why Some Percentile Results Look Weird
 
@@ -575,6 +657,8 @@ Important JSON outputs:
 | `compare_forecast_aae.json` | Forecasting AE vs Forecasting AAE |
 | `threshold_sensitivity.json` | Unified semi-supervised percentile threshold results, semi-supervised notebook only |
 | `forecast_threshold_sensitivity.json` | Forecasting threshold sensitivity / compatibility copy |
+| `point_adjustment_f1_summary.json` | Point-adjusted F1 summary, unsupervised notebook only |
+| `point_adjustment_f1_summary_semi_supervised.json` | Point-adjusted F1 summary, semi-supervised notebook only |
 
 Important checkpoint outputs:
 
@@ -611,9 +695,11 @@ You can use the following wording in documentation or a report:
 
 > We compare reconstruction-based and forecasting-based autoencoder models for Kuka anomaly detection. All models are trained on normal windows only. In the semi-supervised version, a small labeled anomaly validation split is used only for threshold selection, while a separate slow-test split remains untouched for final evaluation.
 
-> The adversarial reconstruction model improves over the plain reconstruction autoencoder, reaching stronger ROC-AUC, PR-AUC, and F1. Forecasting AAE gives the strongest ROC-AUC among the final reported models, while Forecasting AE gives the strongest PR-AUC. Forecasting AAE ranks anomalies well but benefits from threshold tuning because the normal-only `mu+2sigma` threshold is too conservative.
+> The adversarial reconstruction model improves over the plain reconstruction autoencoder, reaching stronger ROC-AUC, PR-AUC, and F1. Forecasting AAE gives the strongest ROC-AUC and PR-AUC among the final reported models. AAE gives the strongest normal-only `mu+2sigma` F1, while Forecasting AAE benefits from the selected percentile threshold and reaches strong F1 at the p80 operating point.
 
 > AAE v2 hyperparameter tuning did not improve over the original AAE, so AAE v2 is documented as an ablation but excluded from the final summary chart.
+
+> Point-adjusted F1 is reported as an additional event-level post-processing view. Because the anomaly test portion is one continuous slow block, classic point adjustment can be optimistic; raw/window-level F1, ROC-AUC, and PR-AUC remain the main comparison metrics.
 
 ## Common Pitfalls
 
@@ -624,7 +710,8 @@ Avoid these mistakes:
 3. Do not choose AAE v2 based on final test performance.
 4. Do not choose thresholds using `slow_test`.
 5. Do not interpret F1 without checking which threshold was used.
-6. Do not commit `KukaNormal.npy` or `KukaSlow.npy`.
+6. Do not present classic point-adjusted F1 as the main headline score without the event-level caveat.
+7. Do not commit `KukaNormal.npy` or `KukaSlow.npy`.
 
 ## Quick Mental Model
 
@@ -638,5 +725,6 @@ ROC-AUC and PR-AUC measure ranking quality.
 F1 needs a threshold.
 mu+2sigma is a normal-only threshold.
 The semi-supervised percentile method uses slow_val only to choose the threshold.
+Point adjustment is post-processing of frozen threshold predictions.
 The final test always stays separate.
 ```

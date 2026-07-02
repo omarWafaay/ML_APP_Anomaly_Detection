@@ -1,0 +1,1061 @@
+{
+  "note": "Window-level, fill-only point adjustment on test_normal + slow_test. False positives outside true anomaly events are retained.",
+  "threshold_selection": "mu+2sigma uses val_normal only; the model-specific percentile is selected on val_normal + slow_val.",
+  "k_percentages": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "rows": [
+    {
+      "group": "Reconstruction",
+      "model": "AE",
+      "notebook_tag": "Reconstruction AE",
+      "threshold_source": "val_normal only",
+      "threshold_rule": "mu+2sigma",
+      "threshold": 0.03360447660088539,
+      "raw": {
+        "P": 1.0,
+        "R": 0.4506172839506173,
+        "F1": 0.6212765957446809,
+        "tp": 73,
+        "fp": 0,
+        "tn": 273,
+        "fn": 89
+      },
+      "classic_PA": {
+        "P": 1.0,
+        "R": 1.0,
+        "F1": 1.0,
+        "tp": 162,
+        "fp": 0,
+        "tn": 273,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 1.0,
+        "R": 1.0,
+        "F1": 1.0,
+        "tp": 162,
+        "fp": 0,
+        "tn": 273,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 1.0,
+        "R": 0.4506172839506173,
+        "F1": 0.6212765957446809,
+        "tp": 73,
+        "fp": 0,
+        "tn": 273,
+        "fn": 89
+      },
+      "PA%K75": {
+        "P": 1.0,
+        "R": 0.4506172839506173,
+        "F1": 0.6212765957446809,
+        "tp": 73,
+        "fp": 0,
+        "tn": 273,
+        "fn": 89
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.4506172839506173,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 73,
+            "coverage": 0.4506172839506173,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 73,
+            "coverage": 0.4506172839506173,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 73,
+            "coverage": 0.4506172839506173,
+            "required_windows": 81,
+            "qualifies": false
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 73,
+            "coverage": 0.4506172839506173,
+            "required_windows": 122,
+            "qualifies": false
+          }
+        ]
+      }
+    },
+    {
+      "group": "Reconstruction",
+      "model": "AE",
+      "notebook_tag": "Reconstruction AE",
+      "threshold_source": "selected on val_normal + slow_val",
+      "threshold_rule": "p99",
+      "threshold": 0.034402914345264435,
+      "raw": {
+        "P": 1.0,
+        "R": 0.4444444444444444,
+        "F1": 0.6153846153846153,
+        "tp": 72,
+        "fp": 0,
+        "tn": 273,
+        "fn": 90
+      },
+      "classic_PA": {
+        "P": 1.0,
+        "R": 1.0,
+        "F1": 1.0,
+        "tp": 162,
+        "fp": 0,
+        "tn": 273,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 1.0,
+        "R": 1.0,
+        "F1": 1.0,
+        "tp": 162,
+        "fp": 0,
+        "tn": 273,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 1.0,
+        "R": 0.4444444444444444,
+        "F1": 0.6153846153846153,
+        "tp": 72,
+        "fp": 0,
+        "tn": 273,
+        "fn": 90
+      },
+      "PA%K75": {
+        "P": 1.0,
+        "R": 0.4444444444444444,
+        "F1": 0.6153846153846153,
+        "tp": 72,
+        "fp": 0,
+        "tn": 273,
+        "fn": 90
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.4444444444444444,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 72,
+            "coverage": 0.4444444444444444,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 72,
+            "coverage": 0.4444444444444444,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 72,
+            "coverage": 0.4444444444444444,
+            "required_windows": 81,
+            "qualifies": false
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 72,
+            "coverage": 0.4444444444444444,
+            "required_windows": 122,
+            "qualifies": false
+          }
+        ]
+      }
+    },
+    {
+      "group": "Reconstruction",
+      "model": "AAE v1",
+      "notebook_tag": "AAE",
+      "threshold_source": "val_normal only",
+      "threshold_rule": "mu+2sigma",
+      "threshold": 0.04190530627965927,
+      "raw": {
+        "P": 0.9928571428571429,
+        "R": 0.8580246913580247,
+        "F1": 0.9205298013245033,
+        "tp": 139,
+        "fp": 1,
+        "tn": 272,
+        "fn": 23
+      },
+      "classic_PA": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.8580246913580247,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 139,
+            "coverage": 0.8580246913580247,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 139,
+            "coverage": 0.8580246913580247,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 139,
+            "coverage": 0.8580246913580247,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 139,
+            "coverage": 0.8580246913580247,
+            "required_windows": 122,
+            "qualifies": true
+          }
+        ]
+      }
+    },
+    {
+      "group": "Reconstruction",
+      "model": "AAE v1",
+      "notebook_tag": "AAE",
+      "threshold_source": "selected on val_normal + slow_val",
+      "threshold_rule": "p99",
+      "threshold": 0.042678795754909515,
+      "raw": {
+        "P": 0.9928057553956835,
+        "R": 0.8518518518518519,
+        "F1": 0.9169435215946844,
+        "tp": 138,
+        "fp": 1,
+        "tn": 272,
+        "fn": 24
+      },
+      "classic_PA": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.8518518518518519,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 138,
+            "coverage": 0.8518518518518519,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 138,
+            "coverage": 0.8518518518518519,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 138,
+            "coverage": 0.8518518518518519,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 138,
+            "coverage": 0.8518518518518519,
+            "required_windows": 122,
+            "qualifies": true
+          }
+        ]
+      }
+    },
+    {
+      "group": "Reconstruction",
+      "model": "AAE v2 val-selected",
+      "notebook_tag": "AAE v2 lam003_d2e4_hinge",
+      "threshold_source": "val_normal only",
+      "threshold_rule": "mu+2sigma",
+      "threshold": 0.051759760826826096,
+      "raw": {
+        "P": 0.8738738738738738,
+        "R": 0.5987654320987654,
+        "F1": 0.7106227106227105,
+        "tp": 97,
+        "fp": 14,
+        "tn": 259,
+        "fn": 65
+      },
+      "classic_PA": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.8738738738738738,
+        "R": 0.5987654320987654,
+        "F1": 0.7106227106227105,
+        "tp": 97,
+        "fp": 14,
+        "tn": 259,
+        "fn": 65
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.5987654320987654,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 97,
+            "coverage": 0.5987654320987654,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 97,
+            "coverage": 0.5987654320987654,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 97,
+            "coverage": 0.5987654320987654,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 97,
+            "coverage": 0.5987654320987654,
+            "required_windows": 122,
+            "qualifies": false
+          }
+        ]
+      }
+    },
+    {
+      "group": "Reconstruction",
+      "model": "AAE v2 val-selected",
+      "notebook_tag": "AAE v2 lam003_d2e4_hinge",
+      "threshold_source": "selected on val_normal + slow_val",
+      "threshold_rule": "p99",
+      "threshold": 0.061358142644166946,
+      "raw": {
+        "P": 1.0,
+        "R": 0.06790123456790123,
+        "F1": 0.12716763005780346,
+        "tp": 11,
+        "fp": 0,
+        "tn": 273,
+        "fn": 151
+      },
+      "classic_PA": {
+        "P": 1.0,
+        "R": 1.0,
+        "F1": 1.0,
+        "tp": 162,
+        "fp": 0,
+        "tn": 273,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 1.0,
+        "R": 0.06790123456790123,
+        "F1": 0.12716763005780346,
+        "tp": 11,
+        "fp": 0,
+        "tn": 273,
+        "fn": 151
+      },
+      "PA%K50": {
+        "P": 1.0,
+        "R": 0.06790123456790123,
+        "F1": 0.12716763005780346,
+        "tp": 11,
+        "fp": 0,
+        "tn": 273,
+        "fn": 151
+      },
+      "PA%K75": {
+        "P": 1.0,
+        "R": 0.06790123456790123,
+        "F1": 0.12716763005780346,
+        "tp": 11,
+        "fp": 0,
+        "tn": 273,
+        "fn": 151
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.06790123456790123,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 11,
+            "coverage": 0.06790123456790123,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 11,
+            "coverage": 0.06790123456790123,
+            "required_windows": 41,
+            "qualifies": false
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 11,
+            "coverage": 0.06790123456790123,
+            "required_windows": 81,
+            "qualifies": false
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 11,
+            "coverage": 0.06790123456790123,
+            "required_windows": 122,
+            "qualifies": false
+          }
+        ]
+      }
+    },
+    {
+      "group": "Forecasting",
+      "model": "Forecasting AE",
+      "notebook_tag": "Forecasting AE",
+      "threshold_source": "val_normal only",
+      "threshold_rule": "mu+2sigma",
+      "threshold": 0.06820058077573776,
+      "raw": {
+        "P": 0.9299363057324841,
+        "R": 0.9012345679012346,
+        "F1": 0.9153605015673981,
+        "tp": 146,
+        "fp": 11,
+        "tn": 262,
+        "fn": 16
+      },
+      "classic_PA": {
+        "P": 0.9364161849710982,
+        "R": 1.0,
+        "F1": 0.9671641791044775,
+        "tp": 162,
+        "fp": 11,
+        "tn": 262,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9364161849710982,
+        "R": 1.0,
+        "F1": 0.9671641791044775,
+        "tp": 162,
+        "fp": 11,
+        "tn": 262,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9364161849710982,
+        "R": 1.0,
+        "F1": 0.9671641791044775,
+        "tp": 162,
+        "fp": 11,
+        "tn": 262,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.9364161849710982,
+        "R": 1.0,
+        "F1": 0.9671641791044775,
+        "tp": 162,
+        "fp": 11,
+        "tn": 262,
+        "fn": 0
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.9012345679012346,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 146,
+            "coverage": 0.9012345679012346,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 146,
+            "coverage": 0.9012345679012346,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 146,
+            "coverage": 0.9012345679012346,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 146,
+            "coverage": 0.9012345679012346,
+            "required_windows": 122,
+            "qualifies": true
+          }
+        ]
+      }
+    },
+    {
+      "group": "Forecasting",
+      "model": "Forecasting AE",
+      "notebook_tag": "Forecasting AE",
+      "threshold_source": "selected on val_normal + slow_val",
+      "threshold_rule": "p80",
+      "threshold": 0.04872925579547882,
+      "raw": {
+        "P": 0.7050691244239631,
+        "R": 0.9444444444444444,
+        "F1": 0.8073878627968337,
+        "tp": 153,
+        "fp": 64,
+        "tn": 209,
+        "fn": 9
+      },
+      "classic_PA": {
+        "P": 0.7168141592920354,
+        "R": 1.0,
+        "F1": 0.8350515463917526,
+        "tp": 162,
+        "fp": 64,
+        "tn": 209,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.7168141592920354,
+        "R": 1.0,
+        "F1": 0.8350515463917526,
+        "tp": 162,
+        "fp": 64,
+        "tn": 209,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.7168141592920354,
+        "R": 1.0,
+        "F1": 0.8350515463917526,
+        "tp": 162,
+        "fp": 64,
+        "tn": 209,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.7168141592920354,
+        "R": 1.0,
+        "F1": 0.8350515463917526,
+        "tp": 162,
+        "fp": 64,
+        "tn": 209,
+        "fn": 0
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.9444444444444444,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 153,
+            "coverage": 0.9444444444444444,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 153,
+            "coverage": 0.9444444444444444,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 153,
+            "coverage": 0.9444444444444444,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 153,
+            "coverage": 0.9444444444444444,
+            "required_windows": 122,
+            "qualifies": true
+          }
+        ]
+      }
+    },
+    {
+      "group": "Forecasting",
+      "model": "Forecasting AAE",
+      "notebook_tag": "Forecasting AAE",
+      "threshold_source": "val_normal only",
+      "threshold_rule": "mu+2sigma",
+      "threshold": 0.08013071864843369,
+      "raw": {
+        "P": 0.990990990990991,
+        "R": 0.6790123456790124,
+        "F1": 0.8058608058608058,
+        "tp": 110,
+        "fp": 1,
+        "tn": 272,
+        "fn": 52
+      },
+      "classic_PA": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9938650306748467,
+        "R": 1.0,
+        "F1": 0.9969230769230769,
+        "tp": 162,
+        "fp": 1,
+        "tn": 272,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.990990990990991,
+        "R": 0.6790123456790124,
+        "F1": 0.8058608058608058,
+        "tp": 110,
+        "fp": 1,
+        "tn": 272,
+        "fn": 52
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.6790123456790124,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 110,
+            "coverage": 0.6790123456790124,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 110,
+            "coverage": 0.6790123456790124,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 110,
+            "coverage": 0.6790123456790124,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 110,
+            "coverage": 0.6790123456790124,
+            "required_windows": 122,
+            "qualifies": false
+          }
+        ]
+      }
+    },
+    {
+      "group": "Forecasting",
+      "model": "Forecasting AAE",
+      "notebook_tag": "Forecasting AAE",
+      "threshold_source": "selected on val_normal + slow_val",
+      "threshold_rule": "p80",
+      "threshold": 0.06253613531589508,
+      "raw": {
+        "P": 0.9135802469135802,
+        "R": 0.9135802469135802,
+        "F1": 0.9135802469135802,
+        "tp": 148,
+        "fp": 14,
+        "tn": 259,
+        "fn": 14
+      },
+      "classic_PA": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K25": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K50": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "PA%K75": {
+        "P": 0.9204545454545454,
+        "R": 1.0,
+        "F1": 0.9585798816568047,
+        "tp": 162,
+        "fp": 14,
+        "tn": 259,
+        "fn": 0
+      },
+      "n_events": 1,
+      "mean_event_coverage_before_PA": 0.9135802469135802,
+      "events": {
+        "classic_PA": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 148,
+            "coverage": 0.9135802469135802,
+            "required_windows": 1,
+            "qualifies": true
+          }
+        ],
+        "PA%K25": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 148,
+            "coverage": 0.9135802469135802,
+            "required_windows": 41,
+            "qualifies": true
+          }
+        ],
+        "PA%K50": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 148,
+            "coverage": 0.9135802469135802,
+            "required_windows": 81,
+            "qualifies": true
+          }
+        ],
+        "PA%K75": [
+          {
+            "event_id": 1,
+            "start": 273,
+            "end": 435,
+            "event_length": 162,
+            "detected_windows": 148,
+            "coverage": 0.9135802469135802,
+            "required_windows": 122,
+            "qualifies": true
+          }
+        ]
+      }
+    }
+  ]
+}
