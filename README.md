@@ -44,35 +44,7 @@ Main conclusions:
 .
 |-- AE_compare_unsupervised.ipynb
 |-- AE_compare_semi_supervised.ipynb
-|-- README.md
-|-- .gitignore
-|-- outputs/
-|   `-- ae_compare/
-|       |-- unsupervised/
-|       |   |-- compare_final.json
-|       |   |-- compare_3way.json
-|       |   |-- compare_aae_v2_sweep.json
-|       |   |-- compare_forecast_aae.json
-|       |   |-- forecast_threshold_sensitivity.json
-|       |   |-- point_adjustment_f1_summary.json
-|       |   |-- recon_ae.pt
-|       |   |-- forecast_ae.pt
-|       |   |-- aae.pt
-|       |   |-- forecast_aae.pt
-|       |   `-- aae_v2_*.pt
-|       `-- semi_supervised/
-|           |-- compare_final.json
-|           |-- compare_3way.json
-|           |-- compare_aae_v2_sweep.json
-|           |-- compare_forecast_aae.json
-|           |-- threshold_sensitivity.json
-|           |-- forecast_threshold_sensitivity.json
-|           |-- point_adjustment_f1_summary_semi_supervised.json
-|           |-- recon_ae.pt
-|           |-- forecast_ae.pt
-|           |-- aae.pt
-|           |-- forecast_aae.pt
-|           `-- aae_v2_*.pt
+|-- README.md  
 |-- KukaNormal.npy      # local dataset, ignored by git
 `-- KukaSlow.npy        # local dataset, ignored by git
 ```
