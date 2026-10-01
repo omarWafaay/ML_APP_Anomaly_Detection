@@ -1,5 +1,7 @@
 # Kuka Anomaly Detection - AE, AAE, Forecasting AE, Semi-Supervised Thresholding, and Point Adjustment
 
+Anomaly detection on KUKA robot sensor data: reconstruction vs. forecasting autoencoders, with and without adversarial regularization (PyTorch).
+
 This repository contains two related anomaly-detection notebooks for the Kuka dataset:
 
 - `AE_compare_unsupervised.ipynb`
